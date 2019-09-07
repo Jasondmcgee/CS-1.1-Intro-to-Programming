@@ -40,12 +40,8 @@ def is_word_guessed(secret_word, letters_guessed):
 
     for i in duplicate_check:
         letters_guessed.remove(i)
-
-    for i in range(len(duplicate_check)):
         if letters_guessed.count(duplicate_check[i]) < 1:
             letters_guessed.append(duplicate_check[i])
-        else:
-            pass
 
     for i in secret_word:
         for j in letters_guessed:
@@ -95,8 +91,6 @@ def is_guess_in_word(guess, secret_word):
     for i in secret_word:
         if i == guess:
             return True
-        else:
-            return False
     pass
 
 
