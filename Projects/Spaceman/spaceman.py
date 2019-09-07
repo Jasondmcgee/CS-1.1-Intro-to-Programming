@@ -33,6 +33,20 @@ def is_word_guessed(secret_word, letters_guessed):
 
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     check = 0
+    duplicate_check = []
+    for i in letters_guessed:
+        if letters_guessed.count(i) > 2:
+            duplicate_check.append(i)
+
+    for i in duplicate_check:
+        letters_guessed.remove(i)
+
+    for i in range(len(duplicate_check)):
+        if letters_guessed.count(duplicate_check[i]) < 1:
+            letters_guessed.append(duplicate_check[i])
+        else:
+            pass
+
     for i in secret_word:
         for j in letters_guessed:
             if i == j:
@@ -118,6 +132,7 @@ def spaceman(secret_word):
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
         if is_word_guessed(secret_word, letters_guessed):
             finished += 1
+            print("Yay you win!")
     #TODO: show the guessed word so far
 
     #TODO: check if the game has been won or lost
