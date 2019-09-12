@@ -52,13 +52,6 @@ def is_word_guessed(secret_word, letters_guessed):
             check.append(letter)
         if set(check) == set(secret_word):
             return True
-
-    #for letter in secret_word:
-    #    for letter_guess in letters_guessed:
-    #        if letter == letter_guess:
-    #            check += 1
-    #        if check == len(secret_word):
-    #            return True
     pass
 
 
