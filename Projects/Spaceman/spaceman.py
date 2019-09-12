@@ -33,23 +33,32 @@ def is_word_guessed(secret_word, letters_guessed):
 
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     # Added a duplicate_check because duplicates were throwing errors
-    check = 0
+
+    check = []
     duplicate_check = []
     for letter in letters_guessed:
         if letters_guessed.count(letter) > 2:
             duplicate_check.append(letter)
 
-    for i in duplicate_check:
-        letters_guessed.remove(i)
+    # Removing all the duplicates and adding one of them back
+
+    for i in range(len(duplicate_check)):
+        letters_guessed.remove(duplicate_check[i])
         if letters_guessed.count(duplicate_check[i]) < 1:
             letters_guessed.append(duplicate_check[i])
 
     for letter in secret_word:
-        for letter_guess in letters_guessed:
-            if letter == letter_guess:
-                check += 1
-            if check == len(secret_word):
-                return True
+        if letter in letters_guessed:
+            check.append(letter)
+        if set(check) == set(secret_word):
+            return True
+
+    #for letter in secret_word:
+    #    for letter_guess in letters_guessed:
+    #        if letter == letter_guess:
+    #            check += 1
+    #        if check == len(secret_word):
+    #            return True
     pass
 
 
@@ -110,12 +119,16 @@ def spaceman(secret_word):
     while finished < 1:
     #TODO: show the player information about the game according to the project spec
 
-        print("Guess the secret word, you only have 7 trys.")
-        guess = input("guess a letter:")
+        print("Guess the secret word!")
+        print(secret_word)
+        if trys < 1:
+            print("you only have 7 guesses.")
+    #TODO: Ask the player to guess one letter per round and check that it is only one letter
 
+        guess = input("guess a letter:")
         while len(guess) < 1:
             guess = input("guess a better letter:")
-    #TODO: Ask the player to guess one letter per round and check that it is only one letter
+    # taking the first letter of whatever they guess as the users guess
 
         guess = str(guess)
         guess = guess[0]
@@ -134,10 +147,12 @@ def spaceman(secret_word):
             finished += 1
             print("Yay you win!")
 
-        if trys > 7:
+        elif trys >= 7:
             finished += 1
             print("sorry, better luck next time")
 
+
+        print("only "+str(7 - trys)+" guesses left!")
         trys += 1
     #TODO: check if the game has been won or lost
 
