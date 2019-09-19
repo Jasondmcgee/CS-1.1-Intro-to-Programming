@@ -149,10 +149,6 @@ def spaceman(secret_word):
     #TODO: check if the game has been won or lost
 
 
-
-
-
-
 #These function calls that will start the game
 secret_word = load_word()
 spaceman(load_word())
